@@ -12,7 +12,7 @@
 
   <!-- Bootstrap core CSS -->
   <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <!-- Custom styles for this template -->
   <link href="{{asset('css/blog-home.css')}}" rel="stylesheet">
@@ -37,10 +37,18 @@
           </li>
 
           @if (Auth::check())
-              
+
             <li class="nav-item">
-              <a class="nav-link" href="{{route('admin.index')}}">Admin</a>
+              <a class="nav-link" href="{{route('admin.index')}}">Dashboard</a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('logout.perform')}}">Logout</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('user.profile.show', auth()->user())}}">{{auth()->user()->name}}</a>
+              </li>
           @else
             <li class="nav-item">
               <a class="nav-link" href="/login">Login</a>
@@ -51,14 +59,7 @@
             </li>
           @endif
 
-         
-        
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
+
         </ul>
       </div>
     </div>
@@ -78,7 +79,7 @@
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
 
-        <!-- Search Widget -->
+        {{-- <!-- Search Widget -->
         <div class="card my-4">
           <h5 class="card-header">Search</h5>
           <div class="card-body">
@@ -89,50 +90,10 @@
               </span>
             </div>
           </div>
-        </div>
+        </div> --}}
 
-        <!-- Categories Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Categories</h5>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">Web Design</a>
-                  </li>
-                  <li>
-                    <a href="#">HTML</a>
-                  </li>
-                  <li>
-                    <a href="#">Freebies</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">JavaScript</a>
-                  </li>
-                  <li>
-                    <a href="#">CSS</a>
-                  </li>
-                  <li>
-                    <a href="#">Tutorials</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Side Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-          </div>
-        </div>
+
 
       </div>
 

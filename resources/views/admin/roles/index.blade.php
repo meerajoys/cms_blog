@@ -4,12 +4,11 @@
         <h1>Roles</h1>
         @if (session()->has('role-delete'))
 
-        <div class="alert alert-danger">
-            {{session('role-delete')}}
-        </div>
+            <div class="alert alert-danger">
+                {{session('role-delete')}}
+            </div>
 
-
-    @endif
+        @endif
 
         <div class="row">
             <div class="col-sm-3">

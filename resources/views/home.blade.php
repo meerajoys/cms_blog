@@ -3,7 +3,7 @@
 @section('content')
 
 
-    
+
     <h1 class="my-4">Page Heading
         <small>Secondary Text</small>
       </h1>
@@ -11,7 +11,7 @@
       <!-- Blog Post -->
 
       @foreach($posts as $post)
-      
+
       <div class="card mb-4">
         <img class="card-img-top" src="{{$post->post_image}}" alt="Card image cap">
         <div class="card-body">
@@ -21,7 +21,7 @@
         </div>
         <div class="card-footer text-muted">
           Posted on {{$post->created_at->diffForHumans()}}
-          <a href="#">Start Bootstrap</a>
+          <a href="#">{{$post->user->name}}</a>
         </div>
       </div>
 

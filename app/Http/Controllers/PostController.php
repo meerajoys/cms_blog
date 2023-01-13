@@ -22,12 +22,12 @@ class PostController extends Controller
     }
 
     public function show(Post $post){
-      
+
 
         return view('blog-post', ['post'=>$post]);
     }
     public function create(){
-      
+
         $this->authorize('create', Post::class);
 
         return view('admin.posts.create');
@@ -43,7 +43,7 @@ class PostController extends Controller
         ]);
 
         if(request('post_image')){
-            $inputs['post_image'] = request('post_image')->store('images');
+            $inputs['post_image'] = request('post_image')->store('images','public');
         }
 
         auth()->user()->posts()->create($inputs);
@@ -51,7 +51,7 @@ class PostController extends Controller
         session()->flash('post-created-message', 'Post with title ' . $inputs['title'] . ' was created');
 
         return redirect()->route('post.index');
- 
+
 
 
         // dd(request()->all());
@@ -64,7 +64,7 @@ class PostController extends Controller
         // }
 
         $this->authorize('view', $post);         //to edit only users post
-        
+
         return view('admin.posts.edit', ['post'=>$post]);
     }
 
@@ -80,7 +80,7 @@ class PostController extends Controller
 
     //or another method
 
-    
+
     public function destroy(Post $post, Request $request){
 
         $this->authorize('delete', $post);
@@ -123,5 +123,5 @@ class PostController extends Controller
         return redirect()->route('post.index');
     }
 
-   
+
 }
