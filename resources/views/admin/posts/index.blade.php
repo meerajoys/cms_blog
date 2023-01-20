@@ -1,6 +1,7 @@
 <x-admin-master>
     @section('content')
-        <h1>All Posts</h1>
+    <h2 class="m-0 font-weight-bold text-primary">All Posts</h2><br>
+
 
         @if (Session::has('message'))
 
@@ -26,7 +27,7 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Posts</h6>
+              {{-- <h6 class="m-0 font-weight-bold text-primary">Posts</h6> --}}
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -64,7 +65,7 @@
 
 
                       <tr>
-                          <td>{{$post->id}}</td>
+                          <td>#</td>
                           <td>{{$post->user->name}}</td>
                           <td><a href="{{route('post.edit', $post->id)}}">{{$post->title}}</a></td>
                           <td>

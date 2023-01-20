@@ -2,8 +2,8 @@
 
     @section('content')
 
-        <h1>Permissions</h1>
-        @if (session()->has('permission-delete'))
+    <h3 class="m-0 font-weight-bold text-primary">Permissions</h3><br>
+    @if (session()->has('permission-delete'))
 
             <div class="alert alert-danger">
                 {{session('permission-delete')}}
@@ -36,7 +36,7 @@
 
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                      <h6 class="m-0 font-weight-bold text-primary">Permissions</h6>
+                      <h6 class="m-0 font-weight-bold text-primary">All Permissions</h6>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">

@@ -13,7 +13,7 @@
 
             <div class="col-sm-6">
 
-                <h1>Edit: {{$permission->name}}</h1>
+                <h2 class="font-weight-bold text-primary">Edit: {{$permission->name}}</h2><br>
 
                 <form action="{{route('permissions.update', $permission->id)}}" method="post">
                     @csrf

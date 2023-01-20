@@ -16,7 +16,7 @@ class PostController extends Controller
 
         // $posts = auth()->user()->posts;     //only view logined user posts
 
-        $posts = auth()->user()->posts()->paginate(5);
+        $posts = auth()->user()->posts()->orderBy('id', 'desc')->paginate(5);
 
 
         return view('admin.posts.index',['posts'=>$posts]);
@@ -99,6 +99,7 @@ class PostController extends Controller
     public function destroy(Post $post, Request $request){
 
         $this->authorize('delete', $post);
+        // $post = Post::find($id);
 
         $post->delete();
 
@@ -156,7 +157,10 @@ class PostController extends Controller
     }
 
 
+
 }
+
+
 
 
 

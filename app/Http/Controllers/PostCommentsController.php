@@ -134,12 +134,24 @@ class PostCommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
 
-        Comment::findOrFail($id)->delete();
+        // dd($id);
+        $comment = Comment::whereid($id)->first();           // find all data from comment table where id =$id
+        // $comment = Comment::where('id',$id)->first();
+
+        // dd($comment);
+        $comment->delete();
+        // $comment = Comment::find($id);
+        // Comment::find($id)->delete();
+
+         // $id->delete();
+         session()->flash('comment-deleted-message', 'Comment was deleted');
+
 
         return redirect()->back();
     }
+
+
 
 
 }

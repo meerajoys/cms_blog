@@ -2,7 +2,7 @@
 
     @section('content')
 
-        <h1>User Profile for: {{$user->name}}</h1>
+        <h2 class="font-weight-bold text-primary">User Profile for {{$user->name}}</h2>
 
         <div class="row">
             <div class="col-sm-6">

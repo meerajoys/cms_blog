@@ -2,7 +2,7 @@
 
     @section('content')
 
-        <h1>Users</h1>
+    <h1 class="m-0 font-weight-bold text-primary">All Users</h1><br>
 
         @if (session('user-deleted'))
 
@@ -12,7 +12,7 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Users</h6>
+              {{-- <h6 class="m-0 font-weight-bold text-primary">Users</h6> --}}
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -48,7 +48,7 @@
 
 
                         <tr>
-                            <td>{{$user->id}}</td>
+                            <td>#</td>
                             <td><a href="{{route('user.profile.show', $user->id)}}">{{$user->username}}</a></td>
                             <td>
                                 {{-- <img src="{{asset('storage/' . $user->avatar)}}" alt="" height="50px"> --}}

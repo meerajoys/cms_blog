@@ -2,10 +2,14 @@
 
     @section('content')
 
+        {{-- for giving permissions --}}
+        {{-- @if (auth()->user()->userHasRole('admin')) --}}
 
-        <h1 class="h3 mb-4 text-gray-800">Welcome {{auth()->user()->name}}</h1>
 
 
+        <h1 class="font-weight-bold text-primary">Welcome {{auth()->user()->name}}</h1>
+
+        {{-- @endif --}}
 
     @endsection
 

@@ -12,7 +12,7 @@
     <div class="row">
        <div class="col-sm-6">
 
-        <h1>Edit: {{$role->name}}</h1>
+        <h2 class="font-weight-bold text-primary">Edit: {{$role->name}}</h2><br>
 
         <form action="{{route('roles.update', $role->id)}}" method="post">
             @csrf
@@ -20,12 +20,12 @@
 
             <label for="name">Name</label>
             <input type="text" name="name" id="name" class="form-control" value="{{$role->name}}"><br>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">Update</button><br>
 
         </form>
        </div>
     </div>
-
+<br>
     <div class="row">
 
         <div class="col-sm-9">

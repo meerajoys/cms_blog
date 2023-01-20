@@ -2,16 +2,21 @@
 
 @section('content')
 
+@if (session()->has('comment-deleted-message'))
+
+    <div class="alert alert-danger">{{Session::get('comment-deleted-message')}}</div>
+
+
+@endif
 
 {{-- <h1>Comments</h1> --}}
+<h3 class="m-0 font-weight-bold text-primary">Comments</h3><br>
 
-<h1>Comments</h1>
 
 <div class="col-sm-9">
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Comments</h6>
         </div>
 
         @if (count($comments) > 0)
@@ -53,14 +58,14 @@
                 @foreach ($comments as $comment)
 
                   <tr>
-                      <td>{{$comment->id}}</td>
+                      <td>#</td>
                       <td>{{$comment->author}}</td>
                       <td>{{$comment->email}}</td>
                       <td>{{$comment->post->title}}</td>
                       <td>{{$comment->body}}</td>
                       <td><a href="{{route('post', $comment->post->id)}}">View Post</a></td>
 {{--
-                      <td>
+                      <td>ss
                         @if($comment->is_active == 1)
 
 
@@ -91,13 +96,13 @@
                       </td> --}}
                       <td>
 
-                        <form action="{{route('comments.destroy', $comment->id)}}" method="Post">
+                        <form action="{{route('comments.destroy', $comment->id)}}" method="Post" enctype="multipart/form-data">
                             @csrf
                             @method('DELETE')
-                          <div class="form-group">
+
 
                             <button type="submit" class="btn btn-danger">Delete</button>
-                          </div>
+
                         </form>
                       </td>
 

@@ -1,7 +1,7 @@
 <x-admin-master>
     @section('content')
-        <h1>Edit</h1>
-        <form action="{{route('post.update', $post->id)}}" method="POST" enctype="multipart/form-data">
+    <h3 class="m-0 font-weight-bold text-primary">Edit Post</h3><br>
+    <form action="{{route('post.update', $post->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 

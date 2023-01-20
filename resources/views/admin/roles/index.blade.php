@@ -1,8 +1,8 @@
 <x-admin-master>
 
     @section('content')
-        <h1>Roles</h1>
-        @if (session()->has('role-delete'))
+    <h2 class="m-0 font-weight-bold text-primary">Roles</h2><br>
+    @if (session()->has('role-delete'))
 
             <div class="alert alert-danger">
                 {{session('role-delete')}}
@@ -33,7 +33,7 @@
 
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                      <h6 class="m-0 font-weight-bold text-primary">Roles</h6>
+                      <h6 class="m-0 font-weight-bold text-primary">All Roles</h6>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">
