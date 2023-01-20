@@ -10,7 +10,7 @@
             <input type="text" name="title" id="title" class="form-control" aria-describedby="" placeholder="Enter title" value="{{$post->title}}">
         </div>
         <div class="form-group">
-            <div><img src="{{$post->post_image}}" alt="" height="100px"></div>
+            <div><img src="{{ asset('storage/' . $post->post_image)}}" alt="" height="100px"></div>
             <label for="file">File</label>
             <input type="file" name="post_image" id="post_image" class="form-control-file">
         </div>
@@ -19,7 +19,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
-        
+
         </form>
 
     @endsection

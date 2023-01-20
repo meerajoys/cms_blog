@@ -37,8 +37,10 @@
                       <th>Owner</th>
                       <th>Title</th>
                       <th>Image</th>
+                      <th>Post Link</th>
+                      {{-- <th>Comments</th> --}}
                       <th>Created At</th>
-                      <th>Updated At</th>
+                      <th>Update</th>
                       <th>Delete</th>
 
                     </tr>
@@ -49,8 +51,10 @@
                       <th>Owner</th>
                       <th>Title</th>
                       <th>Image</th>
+                      <th>Post Link</th>
+                      {{-- <th>Comments</th> --}}
                       <th>Created At</th>
-                      <th>Updated At</th>
+                      <th>Update</th>
                       <th>Delete</th>
                     </tr>
                   </tfoot>
@@ -64,9 +68,10 @@
                           <td>{{$post->user->name}}</td>
                           <td><a href="{{route('post.edit', $post->id)}}">{{$post->title}}</a></td>
                           <td>
-                            <img src="{{ $post->post_image}}" alt="" height="40px">
+                            <img src="{{ asset('storage/' . $post->post_image)}}" alt="" height="40px">
                           </td>
-
+                          <td><a href="{{route('post',$post->id)}}">View Post</a></td>
+                          {{-- <td><a href="{{route('comments.show', $post->id)}}">View Comments</a></td> --}}
                           <td>{{$post->created_at->diffForHumans()}}</td>
                           <td>{{$post->updated_at->diffForHumans()}}</td>
                           <td>

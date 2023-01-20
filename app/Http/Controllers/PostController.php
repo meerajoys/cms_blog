@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Comment;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
@@ -21,32 +22,46 @@ class PostController extends Controller
         return view('admin.posts.index',['posts'=>$posts]);
     }
 
+
     public function show(Post $post){
 
 
         return view('blog-post', ['post'=>$post]);
     }
+
+
     public function create(){
 
         $this->authorize('create', Post::class);
 
         return view('admin.posts.create');
     }
-    public function store(){
+
+
+    public function store(Request $request){
 
         $this->authorize('create', Post::class);
 
         $inputs = request()->validate([
-            'title'=>'required|min:8|max:255',
-            'post_image'=>'file',
+            'title'=>'required|max:255',
+            // 'post_image'=>'file',
             'body'=>'required'
         ]);
 
-        if(request('post_image')){
-            $inputs['post_image'] = request('post_image')->store('images','public');
-        }
 
-        auth()->user()->posts()->create($inputs);
+
+        // if(request('post_image')){
+        //     $inputs['post_image'] = request('post_image')->store('images','public');
+        // }
+
+        // auth()->user()->posts()->create($inputs);
+
+
+        if ($request->hasFile('post_image')) {
+            $inputs['post_image'] = $request->post_image->store('images', 'public');
+        }
+            $inputs['user_id'] = auth()->id();
+            Post::create($inputs);
 
         session()->flash('post-created-message', 'Post with title ' . $inputs['title'] . ' was created');
 
@@ -91,7 +106,7 @@ class PostController extends Controller
         return back();
     }
 
-    public function update(Post $post){
+    public function update(Post $post, Request $request){
 
         $inputs = request()->validate([
             'title'=>'required|min:8|max:255',
@@ -99,11 +114,18 @@ class PostController extends Controller
             'body'=>'required'
         ]);
 
-
-        if(request('post_image')){
-            $inputs['post_image'] = request('post_image')->store('images');
+        if ($request->hasFile('post_image')) {
+            $inputs['post_image'] = $request->post_image->store('images', 'public');
             $post->post_image = $inputs['post_image'];
+
         }
+
+        //older method
+
+        // if(request('post_image')){
+        //     $inputs['post_image'] = request('post_image')->store('images');
+        //     $post->post_image = $inputs['post_image'];
+        // }
 
         $post->title = $inputs['title'];
         $post->body = $inputs['body'];
@@ -124,4 +146,24 @@ class PostController extends Controller
     }
 
 
+    public function post($id, Comment $post_id){
+
+        $post = Post::findOrFail($id);
+
+        $comments = $post->comments()->whereIsActive(1)->get();
+
+        return view('blog-post', compact('post', 'comments'));
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+

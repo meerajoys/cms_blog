@@ -27,25 +27,60 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(User $user){
+    public function update(Request $request, $id){
 
-        $inputs = request()->validate([
-            'username'=>['required', 'string', 'max:255','alpha_dash'],
-            'name'=>['required', 'string', 'max:255'],
-            'email'=>['required', 'email', 'max:255'],
-            'avatar'=>['file'],
-            'password'=>['min:6', 'max:255', 'confirmed']
+        $request->validate([
+            'username'=>'required', 'string', 'max:255','alpha_dash',
+            'name'=>'required', 'string', 'max:255',
+            'email'=>'required', 'email', 'max:255',
+            'avatar'=>'image|mimes:jpeg,gif,svg,png|max:2048',
+            'password'=>'min:6', 'max:255', 'confirmed'
 
         ]);
 
-        if(request('avatar')){
+        $user = User::where('id', $id)->first();
+        // unlink($user->avatar);
 
-            $inputs['avatar'] = request('avatar')->store('images');
-        }
+        $image_name =time().'.' . $request->avatar->extension();
 
-        $user->update($inputs);
+        $request->avatar->move(public_path('users'), $image_name);
 
+        // dd($image_name);
+        $path = "/users/".$image_name;
+
+        $user->name = $request->name;
+        $user->avatar = $path;
+
+        $user->save();
         return back();
+
+
+
+
+
+
+
+        // method 1
+
+        // if ($request->hasFile('avatar')) {
+
+        //     $inputs['avatar'] = $request->avatar->store('avatars', 'public');
+        //     $user->avatar = $inputs['avatar'];
+        //     // dd($user->avatar);
+
+        // }
+
+
+        //older method
+
+        // if(request('avatar')){
+
+        //     $inputs['avatar'] = request('avatar')->store('images');
+        // }
+
+        // $user->update($inputs);
+
+        // return back();
 
 
     }

@@ -6,6 +6,19 @@
 
         <div class="row">
             <div class="col-sm-6">
+
+                {{-- to display errors --}}
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form action="{{route('user.profile.update', $user)}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -14,6 +27,7 @@
                         <img class="img-profile rounded-circle" width="40px" height="40px" src="{{$user->avatar}}">
                     </div>
                     <div class="form-group">
+
                         <input type="file" name="avatar" id="file">
                     </div>
 

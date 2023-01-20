@@ -49,7 +49,7 @@ class User extends Authenticatable
     ];
 
     // mutator
-    
+
     public function setPasswordAttribute($value){
         $this->attributes['password'] = bcrypt($value);
     }
@@ -72,7 +72,7 @@ class User extends Authenticatable
 
     public function userHasRole($role_name){
 
-       
+
         foreach($this->roles as $role){
             if(Str::lower($role_name) == Str::lower($role->name))
             // if($role_name == $role->name)
