@@ -21,10 +21,12 @@
 
                 <form action="{{route('user.profile.update', $user)}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
+                 {{dd(asset('storage/' . $user->avatar))}}
+                 {{-- {{dd($user->avatar)}} --}}
+                    {{-- @method('POST') --}}
 
                     <div class="mb-4">
-                        <img class="img-profile rounded-circle" width="40px" height="40px" src="{{$user->avatar}}">
+                        <img class="img-profile rounded-circle" width="40px" height="40px" src="">
                     </div>
                     <div class="form-group">
 
@@ -54,7 +56,7 @@
                         <input type="text" name="email" id="email" class="form-control" aria-describedby=""  value="{{$user->email}}">
                     </div>
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" class="form-control" aria-describedby="">
                     </div>
@@ -62,7 +64,7 @@
                     <div class="form-group">
                         <label for="password-confirmation">Confirm Password</label>
                         <input type="password" name="password-confirmation" id="password-confirmation" class="form-control" aria-describedby="">
-                    </div>
+                    </div> --}}
 
 
                     <button type="submit" class="btn btn-primary">Submit</button>

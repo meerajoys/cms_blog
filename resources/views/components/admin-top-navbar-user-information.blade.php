@@ -38,14 +38,16 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
 
-                <form action="/logout" method="post">
+                <form action="" method="post">
                     @csrf
-                    <button class="btn btn-secondary">Cancel</button>
-                    <button class="btn btn-danger">Logout</button>
+                    <button formaction="" formmethod="GET" class="btn btn-secondary">Cancel</button>
+                    <button formaction="/logout" formmethod="POST" class="btn btn-danger">Logout</button>
 
                 </form>
+
 
             </div>
           </div>
         </div>
-      </div>
+    </div>
+

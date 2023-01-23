@@ -29,35 +29,47 @@ class UserController extends Controller
 
     public function update(Request $request, $id){
 
-        $request->validate([
+        // dd($request->avatar);
+
+        $inputs = $request->validate([
             'username'=>'required', 'string', 'max:255','alpha_dash',
             'name'=>'required', 'string', 'max:255',
             'email'=>'required', 'email', 'max:255',
             'avatar'=>'image|mimes:jpeg,gif,svg,png|max:2048',
-            'password'=>'min:6', 'max:255', 'confirmed'
+            // 'password'=>'min:6', 'max:255', 'confirmed'
 
         ]);
 
-        $user = User::where('id', $id)->first();
-        // unlink($user->avatar);
+        if($request->hasFile('avatar')){
+            $inputs['avatar'] = $request->avatar->store('imageicons','public');
+        }
 
-        $image_name =time().'.' . $request->avatar->extension();
+        // dd($request->avatar);
 
-        $request->avatar->move(public_path('users'), $image_name);
+        // dd(User::find($id)->update($inputs));
 
-        // dd($image_name);
-        $path = "/users/".$image_name;
-
-        $user->name = $request->name;
-        $user->avatar = $path;
-
-        $user->save();
+        User::find($id)->update($inputs);
+        // User::find($id)->update($inputs);
         return back();
 
+        // $user = User::where('id', $id)->first();
+        // unlink($user->avatar);
+        // dd($request->avatar);
+
+        // $image_name =time().'.' . $request->avatar;//->extension();
 
 
+        // $request->avatar->move(public_path('users'), $image_name);
+        // $path = "/users/".$image_name;
+
+        // $user->username = $request->username;
+        // $user->name = $request->name;
+        // $user->email = $request->email;
+        // $user->avatar = $request->avatar;
 
 
+        // $user->save();
+        // return back();
 
 
         // method 1
