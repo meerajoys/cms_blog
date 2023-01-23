@@ -94,11 +94,15 @@
               </div>
             </div>
         </div>
+
+        @if(auth()->user()->name !== 'admin')
           <div class="d-flex">
             <div class="mx-auto">
               {{$posts->links()}}
             </div>
           </div>
+
+          @endif
           {{-- {{$posts->links()}} --}}
 
     @endsection
@@ -109,6 +113,6 @@
             <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
             <!-- Page level custom scripts -->
-            {{-- <script src="{{asset('js/demo/datatables-demo.js')}}"></script> --}}
+            <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
     @endsection
 </x-admin-master>

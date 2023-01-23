@@ -17,7 +17,14 @@ class PostCommentsController extends Controller
     public function index()
     {
         //
-        $comments = Comment::all();
+        // if(auth()->user()->name !== 'admin'){
+
+        //     $comments= auth()->user()->comments();
+        // }
+
+
+            $comments = Comment::all();
+
 
         return view('admin.comments.index', ['comments'=>$comments]);
     }

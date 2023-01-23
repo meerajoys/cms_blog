@@ -16,9 +16,19 @@ class PostController extends Controller
 
         // $posts = auth()->user()->posts;     //only view logined user posts
 
+        // dd(auth()->user()->name);
+
+        if(auth()->user()->name !== 'admin'){
+
+
         $posts = auth()->user()->posts()->orderBy('id', 'desc')->paginate(5);
 
+        }
+        else{
+            // $posts = Post::orderBy('id', 'desc')->paginate(5)->get();
+            $posts = Post::orderBy('id', 'desc')->get();
 
+        }
         return view('admin.posts.index',['posts'=>$posts]);
     }
 

@@ -52,7 +52,7 @@
                             <td><a href="{{route('user.profile.show', $user->id)}}">{{$user->username}}</a></td>
                             <td>
                                 {{-- <img src="{{asset('storage/' . $user->avatar)}}" alt="" height="50px"> --}}
-                                <img src="{{$user->avatar}}" alt="" height="50px">
+                                <img src="{{$user->avatar}}" onerror="this.src='https://via.placeholder.com/150'"alt="" height="50px">
                             </td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->created_at->diffForHumans()}}</td>
