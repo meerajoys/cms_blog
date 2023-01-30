@@ -11,7 +11,7 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        
+
                         <div class="row mb-3">
                             <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
 
@@ -79,7 +79,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="register-button">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -90,4 +90,10 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+
+    <script src="{{asset('js/button.js')}}"></script>r
+
 @endsection

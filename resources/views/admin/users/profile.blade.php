@@ -26,7 +26,7 @@
                     {{-- @method('POST') --}}
 
                     <div class="mb-4">
-                        <img class="img-profile rounded-circle" width="40px" height="40px" src="{{$user->avatar}}" alt="profile-pic">
+                        <img class="img-profile rounded-circle" width="40px" height="40px" src="{{$user->avatar}}" alt="profile-pic" >
                     </div>
                     <div class="form-group">
 
@@ -67,7 +67,7 @@
                     </div> --}}
 
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="profile-update">Submit</button>
 
                 </form>
             </div>
@@ -177,4 +177,12 @@
         </div>
 
     @endsection
+
+    @section('scripts')
+
+        <script src="{{asset('js/button.js')}}"></script>r
+
+    @endsection
+
+
 </x-admin-master>

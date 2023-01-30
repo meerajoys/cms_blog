@@ -20,7 +20,7 @@
 
             <label for="name">Name</label>
             <input type="text" name="name" id="name" class="form-control" value="{{$role->name}}"><br>
-            <button type="submit" class="btn btn-primary">Update</button><br>
+            <button type="submit" class="btn btn-primary" id="role-update">Update</button><br>
 
         </form>
        </div>
@@ -128,4 +128,11 @@
         </div>
     </div>
     @endsection
+
+    @section('scripts')
+
+        <script src="{{asset('js/button.js')}}"></script>r
+
+    @endsection
+
 </x-admin-master>

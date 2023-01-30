@@ -17,7 +17,7 @@
 
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" name="name" id="" class="form-control @error('name') is-invalid @enderror">
+                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror">
 
                         <div>
                             @error('name')
@@ -25,7 +25,7 @@
                             @enderror
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary" id="role-create">Create</button>
 
                 </form>
             </div>
@@ -82,6 +82,12 @@
                 </div>
             </div>
         </div>
+
+    @endsection
+
+    @section('scripts')
+
+        <script src="{{asset('js/button.js')}}"></script>r
 
     @endsection
 
