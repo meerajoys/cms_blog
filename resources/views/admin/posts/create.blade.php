@@ -19,13 +19,13 @@
         <button type="submit" class="btn btn-primary" id="post_submit" >Submit</button>
 
         </form>
-        {{-- <script>
+        <script>
             $(document).ready(){
                 $('#post_submit').click(function(){
                     alert("Post created successfully");
                 })
             }
-        </script> --}}
+        </script>
 
 
     @endsection
