@@ -13,6 +13,7 @@ class UserController extends Controller
     //
     public function index(){
 
+
         $users = User::all();
         return view('admin.users.index', ['users'=>$users]);
     }
@@ -29,9 +30,11 @@ class UserController extends Controller
 
     public function update(Request $request, $id){
 
+
+
         // dd($request->avatar);
 
-        $inputs = $request->validate([
+       $request->validate([
             'username'=>'required', 'string', 'max:255','alpha_dash',
             'name'=>'required', 'string', 'max:255',
             'email'=>'required', 'email', 'max:255',
@@ -40,74 +43,32 @@ class UserController extends Controller
 
         ]);
 
+
+        $user = User::where('id', $id)->first();
+
+        // dd($request->avatar);
+
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->email = $request->email;
+
         if($request->hasFile('avatar')){
-            $inputs['avatar'] = $request->avatar->store('imageicons','public');
+
+            $image_name =time().'.' . $request->avatar->extension();
+
+
+            $request->avatar->move(public_path('users'), $image_name);
+            $path = "/users/".$image_name;
+
+            $user->avatar = $path;
         }
 
-        // dd($request->avatar);
 
-        // dd(User::find($id)->update($inputs));
-
-        User::find($id)->update($inputs);
-        // User::find($id)->update($inputs);
+        $user->save();
         return back();
-
-        // $user = User::where('id', $id)->first();
-        // unlink($user->avatar);
-        // dd($request->avatar);
-
-        // $image_name =time().'.' . $request->avatar;//->extension();
-
-
-        // $request->avatar->move(public_path('users'), $image_name);
-        // $path = "/users/".$image_name;
-
-        // $user->username = $request->username;
-        // $user->name = $request->name;
-        // $user->email = $request->email;
-        // $user->avatar = $request->avatar;
-
-
-        // $user->save();
-        // return back();
-
-
-        // method 1
-
-        // if ($request->hasFile('avatar')) {
-
-        //     $inputs['avatar'] = $request->avatar->store('avatars', 'public');
-        //     $user->avatar = $inputs['avatar'];
-        //     // dd($user->avatar);
-
-        // }
-
-
-        //older method
-
-        // if(request('avatar')){
-
-        //     $inputs['avatar'] = request('avatar')->store('images');
-        // }
-
-        // $user->update($inputs);
-
-        // return back();
-
 
     }
 
-    // public function edit(User $user, Role $role){
-
-    //     $this->authorize('view', $user);
-
-    //     return view('admin.users.edit',[
-
-    //         'user'=>$user,
-    //         'roles'=>Role::all()
-
-    //     ]);
-    // }
 
 
     public function destroy(User $user){

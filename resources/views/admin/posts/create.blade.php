@@ -13,13 +13,25 @@
             <input type="file" name="post_image" id="post_image" class="form-control-file">
         </div>
         <div class="form-group">
-            <textarea name="body" id="body" cols="30" rows="10" class="form-control"></textarea>
+            <textarea name="body" id="body" cols="30" rows="10" class="form-control" placeholder="Enter the content"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" id="post_submit" >Submit</button>
 
         </form>
+        {{-- <script>
+            $(document).ready(){
+                $('#post_submit').click(function(){
+                    alert("Post created successfully");
+                })
+            }
+        </script> --}}
+
 
     @endsection
+
+
+
+
 
 </x-admin-master>

@@ -21,12 +21,12 @@
 
                 <form action="{{route('user.profile.update', $user)}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                 {{dd(asset('storage/' . $user->avatar))}}
+                 {{-- {{dd(asset('storage/' . $user->avatar))}} --}}
                  {{-- {{dd($user->avatar)}} --}}
                     {{-- @method('POST') --}}
 
                     <div class="mb-4">
-                        <img class="img-profile rounded-circle" width="40px" height="40px" src="">
+                        <img class="img-profile rounded-circle" width="40px" height="40px" src="{{$user->avatar}}" alt="profile-pic">
                     </div>
                     <div class="form-group">
 
