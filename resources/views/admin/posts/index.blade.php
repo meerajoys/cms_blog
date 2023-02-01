@@ -70,13 +70,29 @@
                           <td><a href="{{route('post.edit', $post->id)}}">{{$post->title}}</a></td>
                           <td>
 
-                            {!! $post->body !!}
+                            <!-- to display all the content in the body -->
 
+                            {{-- {!! $post->body !!} --}}
+
+                            <!-- Display only images from the post body -->
+
+                                @php
+                                    $body = $post->body;
+
+                                    preg_match_all('/<img[^>]+src="([^">]+)"/', $body, $matches);
+
+                                    foreach ($matches[1] as $image){
+                                        echo '<img src= "' .$image . '" width="100" height="50">';
+                                    }
+
+
+                                @endphp
 
 
                             {{-- <img src="{!! asset('ckimages/' . $post->body)!!}" alt="" height="40px"> --}}
                           </td>
                           <td><a href="{{route('post',$post->id)}}">View Post</a></td>
+
                           {{-- <td><a href="{{route('comments.show', $post->id)}}">View Comments</a></td> --}}
                           <td>{{$post->created_at->diffForHumans()}}</td>
                           <td>{{$post->updated_at->diffForHumans()}}</td>

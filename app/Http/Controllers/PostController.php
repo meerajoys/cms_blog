@@ -30,7 +30,6 @@ class PostController extends Controller
 
         }
 
-
         return view('admin.posts.index',['posts'=>$posts]);
     }
 
@@ -121,17 +120,22 @@ class PostController extends Controller
 
     public function update(Post $post, Request $request){
 
+
+        // dd($request->all());
         $inputs = request()->validate([
-            'title'=>'required|min:8|max:255',
-            'post_image'=>'file',
+            'title'=>'required|max:255',
+            // 'post_image'=>'file',
             'body'=>'required'
         ]);
 
-        if ($request->hasFile('post_image')) {
-            $inputs['post_image'] = $request->post_image->store('images', 'public');
-            $post->post_image = $inputs['post_image'];
+        // dd($inputs['title'],$inputs);
+        // to update images
 
-        }
+        // if ($request->hasFile('post_image')) {
+        //     $inputs['post_image'] = $request->post_image->store('images', 'public');
+        //     $post->post_image = $inputs['post_image'];
+
+        // }
 
         //older method
 
@@ -142,6 +146,8 @@ class PostController extends Controller
 
         $post->title = $inputs['title'];
         $post->body = $inputs['body'];
+
+
 
         // auth()->user()->posts()->save($post);      // here any post will be saved to one user after updation
 

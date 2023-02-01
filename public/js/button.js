@@ -23,9 +23,9 @@
     // post edit
 
     $('#post-edit').attr('disabled', true);
-    $('#title, #post-image, #body').on('input', function(){
+    $('#title, #body').on('input', function(){
 
-        if($('#title').val() == "" && $('#file').val() == "" && $('#body').val() == ""){
+        if($('#title').val() == "" && $('#body').val() == ""){
 
             $('#post-edit').attr('disabled', true);
         }

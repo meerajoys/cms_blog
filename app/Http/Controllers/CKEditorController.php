@@ -30,17 +30,17 @@ class CKEditorController extends Controller
         }
     }
 
-    public function show(Request $request){
+    // public function show(Request $request){
 
-        $data = $request->input('body');
+    //     $data = $request->input('body');
 
-        preg_match_all('/<img[^>]+>/i', $data, $result);
+    //     preg_match_all('/<img[^>]+>/i', $data, $result);
 
-        foreach ($result as $img_tag) {
-           echo $img_tag;
-        }
-        return view('blog-post', ['post'=>$post]);
-    }
+    //     foreach ($result as $img_tag) {
+    //        echo $img_tag;
+    //     }
+    //     return view('blog-post', ['post'=>$post]);
+    // }
 
 
 }
