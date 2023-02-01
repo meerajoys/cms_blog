@@ -28,10 +28,12 @@
                 @foreach($posts as $post)
 
                 <div class="card m-6" style="width: 35rem">
-                  <img class="card-img-top " src="{{ asset('storage/' . $post->post_image)}}" alt="Card image cap">
+                  {{-- <img class="card-img-top " src="{{ asset('storage/' . $post->post_image)}}" alt="Card image cap"> --}}
                   <div class="card-body">
                     <h2 class="card-title">{{$post->title}}</h2>
-                    <p class="card-text">{{Str::limit($post->body, '50', '...')}}</p>
+                    <p class="card-text">{!! $post->body !!}</p>
+
+                    {{-- <p class="card-text">{!! Str::limit($post->body, '50', '...') !!}</p> --}}
                     <a href="{{route('post', $post->id)}}" class="btn btn-primary">Read More &rarr;</a>
                   </div>
                   <div class="card-footer text-muted">

@@ -7,9 +7,9 @@
     // code for post create page validation
 
     $('#post-create').attr('disabled', true);
-    $('#title, #body').on('input', function(){
+    $('#title, ckeditor').on('input', function(){
 
-        if($('#title').val() !== "" && $('#body').val() !== ""){
+        if($('#title').val() !== "" && $('ckeditor').val() !== ""){
 
             $('#post-create').attr('disabled', false);
         }
@@ -19,25 +19,37 @@
 
     });
 
+
+    // post edit
+
+    $('#post-edit').attr('disabled', true);
+    $('#title, #post-image, #body').on('input', function(){
+
+        if($('#title').val() == "" && $('#file').val() == "" && $('#body').val() == ""){
+
+            $('#post-edit').attr('disabled', true);
+        }
+        else{
+            $('#post-edit').attr('disabled', false);
+        }
+    });
+
   // login page
 
-//   $('#login-button').attr('disabled', true);
-//   $('#email, #password').on('input', function(){
+  $('#login-button').attr('disabled', true);
+  $('#email, #password').on('input', function(){
 
-//       if($('#email').val() !== "" && $('#password').val() !== ""){
+      if($('#email').val() !== "" && $('#password').val() !== ""){
 
-//           $('#login-button').attr('disabled', false);
-//       }
-//       else{
-//           $('#login-button').attr('disabled', true);
-//       }
+          $('#login-button').attr('disabled', false);
+      }
+      else{
+          $('#login-button').attr('disabled', true);
+      }
 
 
 
-//   });
-  $('#test-button').click(function(){
-    alert("post is created successfully");
-});
+  });
 
 
   //register page
@@ -54,6 +66,7 @@
       }
 
   });
+
 
 
 

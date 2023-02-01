@@ -6,14 +6,15 @@
         @csrf
         <div class="form-group">
             <label for="title" name="title-label">Title </label>
-            <input type="text" name="title" id="title" class="form-control" aria-describedby="" placeholder="Enter title" onblur="validate()">
+            <input type="text" name="title" id="title" class="form-control" aria-describedby="" placeholder="Enter title" >
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="file">File</label>
             <input type="file" name="post_image" id="post_image" class="form-control-file">
-        </div>
+        </div> --}}
         <div class="form-group">
-            <textarea name="body" id="body" cols="30" rows="10" class="form-control" placeholder="Enter the content" onblur="validate()"></textarea>
+            <label for="body">Description</label>
+            <textarea name="body" id="body" cols="30" rows="10" class="ckeditor form-controll" placeholder="Enter the content" ></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary" id="post-create" >Submit</button>
@@ -26,10 +27,20 @@
 
     @section('scripts')
 
-        <script src="{{asset('js/button.js')}}"></script>r
+        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+        <script>
+                $(document).ready(function () {
+                    $('.ckeditor').ckeditor();
+                });
+
+            CKEDITOR.replace('body', {
+
+                filebrowserUploadUrl: "{{route('ckeditor.imageupload', ['_token'=> csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+        </script>
+
 
     @endsection
-
-
 
 </x-admin-master>

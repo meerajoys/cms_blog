@@ -69,7 +69,12 @@
                           <td>{{$post->user->name}}</td>
                           <td><a href="{{route('post.edit', $post->id)}}">{{$post->title}}</a></td>
                           <td>
-                            <img src="{{ asset('storage/' . $post->post_image)}}" alt="" height="40px">
+
+                            {!! $post->body !!}
+
+
+
+                            {{-- <img src="{!! asset('ckimages/' . $post->body)!!}" alt="" height="40px"> --}}
                           </td>
                           <td><a href="{{route('post',$post->id)}}">View Post</a></td>
                           {{-- <td><a href="{{route('comments.show', $post->id)}}">View Comments</a></td> --}}

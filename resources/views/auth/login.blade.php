@@ -53,7 +53,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="login-button">
                                     {{ __('Login') }}
                                 </button>
 
@@ -71,13 +71,7 @@
         </div>
     </div>
 </div>
-<button id="test-button">Click</button>
+
 
 @endsection
 
-
-@section('scripts')
-
-<script src="{{asset('js/button.js')}}"></script>r
-
-@endsection

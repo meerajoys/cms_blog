@@ -29,6 +29,8 @@ class PostController extends Controller
             $posts = Post::orderBy('id', 'desc')->get();
 
         }
+
+
         return view('admin.posts.index',['posts'=>$posts]);
     }
 
@@ -165,6 +167,7 @@ class PostController extends Controller
 
         return view('blog-post', compact('post', 'comments'));
     }
+
 
 
 

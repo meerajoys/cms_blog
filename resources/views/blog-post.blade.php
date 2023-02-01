@@ -23,7 +23,7 @@
             <hr>
 
             <!-- Post Content -->
-                {{$post->body}}
+                {!! $post->body !!}
             <hr>
 
             @if (Session::has('comment-message'))

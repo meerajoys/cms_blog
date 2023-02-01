@@ -76,5 +76,29 @@
             @yield('content')
         </main>
     </div>
+
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{{asset('js/sb-admin-2.js')}}"></script>
+
+    <!-- Custom scripts register and login button-->
+
+  <script src="{{asset('js/button.js')}}"></script>
+
+
+ @yield('scripts')
+
+
+
+
+
 </body>
 </html>

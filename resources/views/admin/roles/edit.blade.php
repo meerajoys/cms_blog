@@ -129,10 +129,6 @@
     </div>
     @endsection
 
-    @section('scripts')
 
-        <script src="{{asset('js/button.js')}}"></script>r
-
-    @endsection
 
 </x-admin-master>

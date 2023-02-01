@@ -221,6 +221,10 @@
   <!-- Custom scripts for all pages-->
   <script src="{{asset('js/sb-admin-2.js')}}"></script>
 
+    <!-- Custom scripts for form buttons-->
+
+  <script src="{{asset('js/button.js')}}"></script>
+
 
 
   @yield('scripts')
