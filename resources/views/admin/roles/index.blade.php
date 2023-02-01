@@ -7,28 +7,31 @@
             <div class="alert alert-danger">
                 {{session('role-delete')}}
             </div>
+    @elseif (session()->has('role-create'))
 
-        @endif
+            <div class="alert alert-success">
+                {{session('role-create')}}
+            </div>
+
+
+    @endif
 
         <div class="row">
             <div class="col-sm-3">
-                <form action="{{route('roles.store')}}" method="post">
+                <form action="{{route('roles.store')}}" method="POST" id="form-ajax">
+                {{-- <form id="form-ajax"> --}}
+
                     @csrf
 
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror">
-
-                        <div>
-                            @error('name')
-                                <span><strong>{{$message}}</strong></span>
-                            @enderror
-                        </div>
+                        <input type="text" name="name" id="name" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-primary" id="role-create">Create</button>
-
+                    <button type="submit" class="btn btn-primary" id="role-create" name="submit">Create</button>
                 </form>
             </div>
+
+            {{-- <div id="response"></div> --}}
             <div class="col-sm-9">
 
                 <div class="card shadow mb-4">
@@ -86,5 +89,34 @@
     @endsection
 
 
+    @section('scripts')
+
+    <script>
+
+        $(document).ready(function(){
+
+            $('#form-ajax').submit(function(e){
+
+                e.preventDefault();
+                // $('#role-create').attr('disabled', false);
+
+                var formdata = $(this).serialize();
+                $.ajax({
+                    url: "{{url('admin/roles/store')}}",
+                    data: formdata,
+                    type: 'post',
+                    success: function(result){
+
+                        // $('#response').html(result);
+                        // console.log(result);
+                        $('#form-ajax')['0'].reset();
+                        $('#role-create').attr('disabled', true);
+                    }
+                });
+            });
+        });
+
+    </script>
+    @endsection
 
 </x-admin-master>

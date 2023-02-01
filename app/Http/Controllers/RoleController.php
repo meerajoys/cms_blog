@@ -20,17 +20,19 @@ class RoleController extends Controller
 
     }
 
-    public function store(Role $roles){
+    public function store(Role $role){
 
         request()->validate([
             'name'=>['required']
         ]);
 
-        Role::create([
+        $roles = Role::create([
 
             'name'=>Str::ucfirst(request('name')),
             'slug'=>Str::of(Str::lower(request('name')))->slug('-')
         ]);
+
+        session()->flash('role-create', "Role " .$roles->name. " is created");
 
         return back();
     }
