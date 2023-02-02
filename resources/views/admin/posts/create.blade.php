@@ -37,6 +37,7 @@
 
                 filebrowserUploadUrl: "{{route('ckeditor.imageupload', ['_token'=> csrf_token() ])}}",
                 filebrowserUploadMethod: 'form'
+                // removeButtons: 'Source'
             });
         </script>
 

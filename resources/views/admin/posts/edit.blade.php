@@ -39,7 +39,9 @@
         CKEDITOR.replace('body', {
 
             filebrowserUploadUrl: "{{route('ckeditor.imageupload', ['_token'=> csrf_token() ])}}",
-            filebrowserUploadMethod: 'form'
+            filebrowserUploadMethod: 'form',
+            removeButtons: 'Source'                             // to remove source icon from editor
+
         });
     </script>
 

@@ -72,6 +72,9 @@ class PostController extends Controller
             $inputs['post_image'] = $request->post_image->store('images', 'public');
         }
             $inputs['user_id'] = auth()->id();
+
+            // $disallowedTags ='<scripts><p>';
+            // $sanitizedInput = strip_tags($inputs['data'], $disallowedTags);
             Post::create($inputs);
 
         session()->flash('post-created-message', 'Post with title ' . $inputs['title'] . ' was created');
@@ -88,6 +91,7 @@ class PostController extends Controller
         // if(auth()->user()->can('view', $post)){
 
         // }
+
 
         $this->authorize('view', $post);         //to edit only users post
 

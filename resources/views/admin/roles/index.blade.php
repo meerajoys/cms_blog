@@ -3,10 +3,10 @@
     @section('content')
     <h2 class="m-0 font-weight-bold text-primary">Roles</h2><br>
     @if (session()->has('role-delete'))
-
+{{--
             <div class="alert alert-danger">
                 {{session('role-delete')}}
-            </div>
+            </div> --}}
     @elseif (session()->has('role-create'))
 
             <div class="alert alert-success">
@@ -64,21 +64,25 @@
 
                             @foreach($roles as $role)
                               <tr>
-                                  <td>{{$role->id}}</td>
-                                  <td><a href="{{route('roles.edit', $role->id)}}">{{$role->name}}</a></td>
+                                  <td>#</td>
+                                  <td id="ajaxresponse"><a href="{{route('roles.edit', $role->id)}}">{{$role->name}}</a></td>
+                                  {{-- <td><a href="{{route('roles.edit', $role->id)}}">{{result->name}}</a></td> --}}
+
+
                                   <td>{{$role->slug}}</td>
                                   <td>
                                     <form action="{{route('roles.destroy', $role->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger">Delete</button>
+                                        <button class="btn btn-danger" id="role-delete">Delete</button>
 
                                     </form>
                                   </td>
 
                               </tr>
+                              @endforeach
                           </tbody>
-                          @endforeach
+
                         </table>
                       </div>
                     </div>
@@ -98,20 +102,63 @@
             $('#form-ajax').submit(function(e){
 
                 e.preventDefault();
+
+                //to load spinner
+
+                $("#role-create").prepend('<i class="fa fa-spinner fa-spin"></i>');
                 // $('#role-create').attr('disabled', false);
 
                 var formdata = $(this).serialize();
+
+                // var formdata = '_token=FPF3bAyI9oQJXRIlqqCfjW8LOhrGwMDd6fb3hxPZ&name=Dev';
+                console.log(formdata);
+
+                var name = formdata.split('&')[1].split('=')[1];
+
+                console.log(name);
+
                 $.ajax({
-                    url: "{{url('admin/roles/store')}}",
+                    url: "{{route('roles.store')}}",
                     data: formdata,
                     type: 'post',
-                    success: function(result){
+                    success: function(response){
 
-                        // $('#response').html(result);
-                        // console.log(result);
+                        // $('#response').html(name);
+                        // console.log(response);
+
+                        // var name = response.name;
+                        console.log(name);
+
+
+                        // location.reload();
+
+
+                        // to remove spinner
+
+                        $("#role-create").find(".fa-spinner").remove();
+
+                        var slug = name.toLowerCase();
+
+                        // $('#role-delete').load('');
+                        var deleteForm = `<form action="{{url('admin/roles', $role->id)}}" method="POST">@csrf @method('DELETE')<button class="btn btn-danger" id="role-delete">Delete</button></form>`;
+
+
+                        $('#dataTable').append(
+
+                            // $('#ajaxresponse').html(name);
+
+                            "<td>" + '#' +  "</td>",
+                            `<td><a href="{{route('roles.edit', $role->id )}}"> ${name} </a></td>`,
+                            "<td>" + slug +  "</td>",
+                            "<td>" + deleteForm +  "</td>",
+
+                        );
+
                         $('#form-ajax')['0'].reset();
                         $('#role-create').attr('disabled', true);
+
                     }
+
                 });
             });
         });
