@@ -14,8 +14,13 @@
         </div> --}}
         <div class="form-group">
             <label for="body">Description</label>
-            <textarea name="body" id="body" cols="30" rows="10" class="ckeditor form-controll" placeholder="Enter the content" ></textarea>
+            <textarea name="body" id="body" cols="30" rows="10" class="form-controll" placeholder="Enter the content" ></textarea>
         </div>
+        <div class="form-group">
+            <label for="date" name="date-label">Date </label>
+            <input type="text" name="date" id="date" class="form-control" aria-describedby="" placeholder="Enter date" >
+        </div>
+
 
         <button type="submit" class="btn btn-primary" id="post-create" >Submit</button>
 
@@ -27,10 +32,20 @@
 
     @section('scripts')
 
-        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+        <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+        {{-- <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script> --}}
         <script>
                 $(document).ready(function () {
-                    $('.ckeditor').ckeditor();
+
+                    // $('.ckeditor').ckeditor();
+                    // CKEDITOR.replace('body');
+
+
+                    // $( "#date" ).datepicker({
+                    //     dateFormat: "mm/dd/yy"
+                    // });
+
+                    // $( "#date" ).datepicker();
                 });
 
             CKEDITOR.replace('body', {
@@ -38,7 +53,12 @@
                 filebrowserUploadUrl: "{{route('ckeditor.imageupload', ['_token'=> csrf_token() ])}}",
                 filebrowserUploadMethod: 'form'
                 // removeButtons: 'Source'
+
             });
+
+
+
+
         </script>
 
 

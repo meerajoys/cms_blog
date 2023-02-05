@@ -94,7 +94,7 @@
                           <td><a href="{{route('post',$post->id)}}">View Post</a></td>
 
                           {{-- <td><a href="{{route('comments.show', $post->id)}}">View Comments</a></td> --}}
-                          <td>{{$post->created_at->diffForHumans()}}</td>
+                          <td>{{$post->date}}</td>
                           <td>{{$post->updated_at->diffForHumans()}}</td>
                           <td>
                             {{-- @can('update', $post)    ====== to authorize data   --}}

@@ -30,11 +30,25 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+            <li>
+                <form action="{{route('home')}}" method="get">
+                    <div class="input-group">
+                        <input type="search" class="form-control" name="search" placeholder="Search for title or name" value="">
+                        <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="submit">Search</button>
+                        </span>
+                    </div>
+                </form>
+              </li>
+
+
+
           <li class="nav-item active">
             <a class="nav-link" href="{{route('home')}}">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
+
 
           @if (Auth::check())
 
@@ -81,8 +95,8 @@
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
 
-        {{-- <!-- Search Widget -->
-        <div class="card my-4">
+        <!-- Search Widget -->
+        {{-- <div class="card my-4">
           <h5 class="card-header">Search</h5>
           <div class="card-body">
             <div class="input-group">

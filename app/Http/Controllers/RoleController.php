@@ -22,6 +22,9 @@ class RoleController extends Controller
 
     public function store(Role $role){
 
+        header("Content-Type: application/json");
+
+
         request()->validate([
             'name'=>['required']
         ]);
@@ -34,15 +37,34 @@ class RoleController extends Controller
 
         session()->flash('role-create', "Role " .$roles->name. " is created");
 
-        return back();
+        // return back();
+        return response()->json($roles);
     }
 
-    public function destroy(Role $role){
+    public function destroy(Request $request){
 
-        $role->delete();
 
-        session()->flash('role-delete', "Role " .$role->name . " is deleted");
-        return back();
+
+        // dd($id);
+        // $role = Role::find($id);
+
+        // $role->delete();
+    //  dd($request->id);
+        $result = Role::where('id', $request->id)->delete();
+
+        // dd($result);
+
+
+        // $role = Role::find($request->id);
+        // $role->delete();
+
+        //session()->flash('role-delete', "Role " .$role->name . " is deleted");
+
+        return "deleted";
+
+        // return back();
+
+
 
     }
 

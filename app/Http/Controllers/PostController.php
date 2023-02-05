@@ -56,7 +56,8 @@ class PostController extends Controller
         $inputs = request()->validate([
             'title'=>'required|max:255',
             // 'post_image'=>'file',
-            'body'=>'required'
+            'body'=>'required',
+            'date'=>'required'
         ]);
 
 
@@ -129,7 +130,8 @@ class PostController extends Controller
         $inputs = request()->validate([
             'title'=>'required|max:255',
             // 'post_image'=>'file',
-            'body'=>'required'
+            'body'=>'required',
+            'date'=>'required'
         ]);
 
         // dd($inputs['title'],$inputs);

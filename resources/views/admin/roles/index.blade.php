@@ -1,6 +1,6 @@
 <x-admin-master>
 
-    @section('content')
+@section('content')
     <h2 class="m-0 font-weight-bold text-primary">Roles</h2><br>
     @if (session()->has('role-delete'))
 {{--
@@ -8,10 +8,10 @@
                 {{session('role-delete')}}
             </div> --}}
     @elseif (session()->has('role-create'))
-
+{{--
             <div class="alert alert-success">
                 {{session('role-create')}}
-            </div>
+            </div> --}}
 
 
     @endif
@@ -65,18 +65,24 @@
                             @foreach($roles as $role)
                               <tr>
                                   <td>#</td>
-                                  <td id="ajaxresponse"><a href="{{route('roles.edit', $role->id)}}">{{$role->name}}</a></td>
-                                  {{-- <td><a href="{{route('roles.edit', $role->id)}}">{{result->name}}</a></td> --}}
-
+                                  <td><a href="{{route('roles.edit', $role->id)}}">{{$role->name}}</a></td>
 
                                   <td>{{$role->slug}}</td>
                                   <td>
-                                    <form action="{{route('roles.destroy', $role->id)}}" method="POST">
+
+
+                                  <input type="hidden" id="id_{{$role->id}}" value="{{$role->id}}">
+                                    <button  class="btn btn-danger delete-role" id="role-delete" onclick='del("id_{{$role->id}}")'>Delete</button>
+
+                                    {{-- <button class="btn btn-danger" id="role-delete" data-id="{{$role->id}}">Delete</button> --}}
+
+
+                                    {{-- <form action="{{route('roles.destroy', $role->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger" id="role-delete">Delete</button>
+                                        <button class="btn btn-danger" id="role-delete" data-id="{{ $role->id }}">Delete</button>
 
-                                    </form>
+                                    </form> --}}
                                   </td>
 
                               </tr>
@@ -97,71 +103,97 @@
 
     <script>
 
-        $(document).ready(function(){
+
+
+
+
+
+
+    $(document).ready(function(){
+
 
             $('#form-ajax').submit(function(e){
-
                 e.preventDefault();
 
-                //to load spinner
+                //   to load spinner
 
                 $("#role-create").prepend('<i class="fa fa-spinner fa-spin"></i>');
-                // $('#role-create').attr('disabled', false);
 
-                var formdata = $(this).serialize();
+                var formData = $("#form-ajax").serialize(); // serialize form data
 
-                // var formdata = '_token=FPF3bAyI9oQJXRIlqqCfjW8LOhrGwMDd6fb3hxPZ&name=Dev';
-                console.log(formdata);
-
-                var name = formdata.split('&')[1].split('=')[1];
-
-                console.log(name);
 
                 $.ajax({
                     url: "{{route('roles.store')}}",
-                    data: formdata,
-                    type: 'post',
-                    success: function(response){
+                    data: formData,
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
 
-                        // $('#response').html(name);
-                        // console.log(response);
+                    success: function(result) {
 
-                        // var name = response.name;
-                        console.log(name);
+                        console.log(typeof result); // this return type
 
-
-                        // location.reload();
-
-
-                        // to remove spinner
+                        console.log(result);
+                         // to remove spinner
 
                         $("#role-create").find(".fa-spinner").remove();
 
-                        var slug = name.toLowerCase();
 
-                        // $('#role-delete').load('');
-                        var deleteForm = `<form action="{{url('admin/roles', $role->id)}}" method="POST">@csrf @method('DELETE')<button class="btn btn-danger" id="role-delete">Delete</button></form>`;
+                        $("#dataTable").append(
+                            "<tr><td>" + result.id + "</td>",
+                            `<td><a href="{{route('roles.edit', $role->id )}}">` + result.name + "</a></td>",
+                            "<td>" + result.slug + "</td>",
+                            `<td><input type="hidden" id="id_`+result.id+`" value="`+result.id+`"><button  class="btn btn-danger delete-role" id="role-delete" onclick='del("id_`+result.id+`")'>Delete</button></td></tr>`
+                            // `<td><input type="hidden" id="id_{{`+result.id+`}}" value="{{`+result.id+`}}"><button  class="btn btn-danger delete-role" id="role-delete" onclick='del("id_{{`+result.id+`}}")'>Delete</button></td>`
+                            );
 
-
-                        $('#dataTable').append(
-
-                            // $('#ajaxresponse').html(name);
-
-                            "<td>" + '#' +  "</td>",
-                            `<td><a href="{{route('roles.edit', $role->id )}}"> ${name} </a></td>`,
-                            "<td>" + slug +  "</td>",
-                            "<td>" + deleteForm +  "</td>",
-
-                        );
 
                         $('#form-ajax')['0'].reset();
                         $('#role-create').attr('disabled', true);
-
                     }
-
                 });
+
             });
+
+
         });
+            function del(id_) {
+            // e.preventDefault();
+
+
+            let id = $('#'+id_).val();
+
+            console.log(id);
+            let url = "{{route('roles.destroy')}}";
+
+            console.log(url);
+            // let url = url('admin/roles/{role}/destroy');
+            // $("#role-delete").prepend('<i class="fa fa-spinner fa-spin"></i>');
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: {
+                '_token': '{{ csrf_token() }}',
+                'id':id
+                },
+                success: function(result) {
+
+                console.log(result);
+                // $("#role-delete").find(".fa-spinner").remove();
+                // $('#role-delete').attr('disabled', true);
+
+
+
+                }
+                });
+
+
+            }
+
+
+
 
     </script>
     @endsection

@@ -22,10 +22,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request['search'] ?? "";
 
-        $post = Post::all();
-        return view('home', ['posts'=>$post]);
+        if($search !== ""){
+
+            $post = Post::where("title", "=", $search)->get();
+        }else{
+            $post = Post::all();
+        }
+
+        // $data = compact('post');
+
+        // return view('home')->with($data);
+
+        return view ('home', ['posts'=>$post]);
     }
 }

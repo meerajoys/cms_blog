@@ -18,7 +18,8 @@ class Post extends Model
         'user_id',
         'title',
         'post_image',
-        'body'
+        'body',
+        'date'
 
     ];
 
