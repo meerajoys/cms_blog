@@ -93,3 +93,32 @@
     @endsection
 
     </x-home-master>
+
+
+
+
+
+    <script>
+        $(document).ready(function() {
+          $("#search-input").on('input', function() {
+            let query = $(this).val();
+
+            $.ajax({
+              url: "/",
+            //   url: "{{ route('search') }}",
+              type: 'GET',
+              data: {
+                'search': query
+              },
+              success: function(result) {
+                $("#search-results").html(result);
+                $("#search-results").show();
+              }
+            });
+          });
+        });
+        </script>
+
+
+
+<div id="search-results" style="display: none;"></div>

@@ -104,11 +104,6 @@
     <script>
 
 
-
-
-
-
-
     $(document).ready(function(){
 
 
@@ -154,11 +149,13 @@
                     }
                 });
 
+
+
             });
 
 
         });
-            function del(id_) {
+        function del(id_) {
             // e.preventDefault();
 
 
@@ -180,20 +177,31 @@
                 },
                 success: function(result) {
 
+                // empty the existing data table
+                // $('#dataTable tbody').empty();
+
+                // loop through the updated data and add each role to the table
+                // for (var i = 0; i < result.length; i++) {
+                //     var role = result[i];
+                //     var row = '<tr>' +
+                //                 '<td>' + (i + 1) + '</td>' +
+                //                 '<td><a href="{{route("roles.edit", ' + role.id + ')}}">' + role.name + '</a></td>' +
+                //                 '<td>' + role.slug + '</td>' +
+                //                 '<td><input type="hidden" id="id_' + role.id + '" value="' + role.id + '"><button class="btn btn-danger delete-role" id="role-delete" onclick="del(\'id_' + role.id + '\')">Delete</button></td>' +
+                //             '</tr>';
+                //     $('#dataTable tbody').append(row);
+
+                // }
+
                 console.log(result);
                 $("#role-delete").find(".fa-spinner").remove();
-                // $('#role-delete').attr('disabled', true);
-
-
 
                 }
-                });
-
-
-            }
+            });
 
 
 
+        }
 
     </script>
     @endsection

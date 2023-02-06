@@ -58,8 +58,6 @@ class HomeController extends Controller
     }else{
         $posts = Post::all();
         }
-    // $posts = Post::where('title', 'like', '%'.$search.'%')->get();
-
 
     return view('home', compact('posts'));
 }

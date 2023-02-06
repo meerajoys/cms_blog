@@ -17,8 +17,11 @@
             <textarea name="body" id="body" cols="30" rows="10" class="form-controll" placeholder="Enter the content" ></textarea>
         </div>
         <div class="form-group">
-            <label for="date" name="date-label">Date </label>
-            <input type="text" name="date" id="date" class="form-control" aria-describedby="" placeholder="Enter date" >
+
+
+            <p>Date: <input type="text" id="datepicker"></p>
+            {{-- <label for="date" name="date-label">Date </label>
+            <input type="text" name="date" id="date" class="form-control" aria-describedby="" placeholder="Enter date" > --}}
         </div>
 
 
@@ -31,6 +34,16 @@
     @endsection
 
     @section('scripts')
+
+    <script>
+        $( function() {
+          $( "#datepicker" ).datepicker({
+            dateFormat: "dd-mm-yy"
+          });
+
+        } );
+        </script>
+
 
         <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
         {{-- <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script> --}}

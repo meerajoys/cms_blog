@@ -30,11 +30,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-            <li>
-                <form id="search-form">
-                    <input type="text" id="search-input" name="search" placeholder="search">
+            {{-- <li> --}}
+
+                {{-- <div id="search-container">
+                    <input type="text" id="search-input" class="form-control" placeholder="Search">
+                    <div id="search-results" style="display: none;"></div>
+
+                  </div> --}}
+
+
+
+                {{-- <form id="search-form">
+                    <input type="text" id="search-input" name="search" placeholder="search"> --}}
                     {{-- <button type="submit" id="search-button">Search</button> --}}
-                </form>
+                {{-- </form> --}}
 
                 {{-- <form action="{{route('home')}}" method="get">
                     <div class="input-group">
@@ -44,7 +53,7 @@
                         </span>
                     </div>
                 </form> --}}
-              </li>
+            {{-- </li> --}}
 
 
 
@@ -125,12 +134,12 @@
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  {{-- <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
     </div>
     <!-- /.container -->
-  </footer>
+  </footer> --}}
 
   <!-- Bootstrap core JavaScript -->
   <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>

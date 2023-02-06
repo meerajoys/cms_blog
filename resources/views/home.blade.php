@@ -2,21 +2,15 @@
 
 @section('content')
 
-
-{{-- <h1 class="m-0 font-weight-bold text-primary">All Posts</h1><br> --}}
-
-    {{-- <h1 class="my-4">Page Heading
-        <small>Secondary Text</small>
-      </h1> --}}
-
       <!-- Blog Post -->
 
-      <div class="container m-5">
+    <input type="text" id="search-input" class="form-control" placeholder="Search">
+
+    <div class="container m-5" id="alldata">
 
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4 ">
-                {{-- <h1 class="font-weight-bold text-success text-center" style="font-size: 50px">All Posts</h1><br><br> --}}
             </div>
             <div class="col-4"></div>
         </div>
@@ -43,29 +37,25 @@
                 </div>
 
                 @endforeach
+
             </div>
             <div class="col-3"></div>
         </div>
-
-
-
-
     </div>
 
+    <div id="search-results" style="display: none;"></div>
+
       <!-- Pagination -->
-      <ul class="pagination justify-content-center mb-4">
+      {{-- <ul class="pagination justify-content-center mb-4">
         <li class="page-item">
           <a class="page-link" href="#">&larr; Older</a>
         </li>
         <li class="page-item disabled">
           <a class="page-link" href="#">Newer &rarr;</a>
         </li>
-      </ul>
+      </ul> --}}
 
 
-      <div id="search-results">
-        <!-- Your blog posts will be displayed here -->
-      </div>
 
 
 @endsection
@@ -77,23 +67,38 @@
     $(document).ready(function() {
 
         $("#search-input").on('input', function() {
-        // e.preventDefault();
-        let query = $("#search-input").val();
-        console.log(query);
+            let query = $("#search-input").val();
+            console.log(query);
+            // url: "{{ route('home') }}",
 
-        $.ajax({
-            url: "{{ route('home') }}",
-            type: 'GET',
-            data: {
-            'search': query
-            },
-            success: function(result) {
-                console.log(result.title);
-            $("#search-results").html(result);
-            }
-        });
+            $.ajax({
+                url: "/",
+                type: 'GET',
+                data: {
+                'search': query
+                },
+                success: function(result) {
+                    // console.log(result);
+
+                    // Remove the search input from the result
+
+                    result = result.replace('<input type="text" id="search-input" class="form-control" placeholder="Search">', '');
+
+                    if(result === ""){
+                        $("#alldata").show();
+                        $("#search-results").hide();
+                    }
+                    else{
+                        $("#search-results").html(result);
+                        $("#alldata").hide();
+                        $("#search-results").show();
+                    }
+                }
+            });
         });
     });
+
+
 </script>
 
 @endsection
