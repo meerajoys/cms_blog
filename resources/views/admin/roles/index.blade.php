@@ -141,10 +141,10 @@
 
 
                         $("#dataTable").append(
-                            "<tr><td>" + result.id + "</td>",
+                            "<td>" + '#' + "</td>",
                             `<td><a href="{{route('roles.edit', $role->id )}}">` + result.name + "</a></td>",
                             "<td>" + result.slug + "</td>",
-                            `<td><input type="hidden" id="id_`+result.id+`" value="`+result.id+`"><button  class="btn btn-danger delete-role" id="role-delete" onclick='del("id_`+result.id+`")'>Delete</button></td></tr>`
+                            `<td><input type="hidden" id="id_`+result.id+`" value="`+result.id+`"><button  class="btn btn-danger delete-role" id="role-delete" onclick='del("id_`+result.id+`")'>Delete</button></td>`
                             // `<td><input type="hidden" id="id_{{`+result.id+`}}" value="{{`+result.id+`}}"><button  class="btn btn-danger delete-role" id="role-delete" onclick='del("id_{{`+result.id+`}}")'>Delete</button></td>`
                             );
 
@@ -169,7 +169,7 @@
 
             console.log(url);
             // let url = url('admin/roles/{role}/destroy');
-            // $("#role-delete").prepend('<i class="fa fa-spinner fa-spin"></i>');
+            $("#role-delete").prepend('<i class="fa fa-spinner fa-spin"></i>');
 
             $.ajax({
                 url: url,
@@ -181,7 +181,7 @@
                 success: function(result) {
 
                 console.log(result);
-                // $("#role-delete").find(".fa-spinner").remove();
+                $("#role-delete").find(".fa-spinner").remove();
                 // $('#role-delete').attr('disabled', true);
 
 

@@ -61,6 +61,41 @@
           <a class="page-link" href="#">Newer &rarr;</a>
         </li>
       </ul>
+
+
+      <div id="search-results">
+        <!-- Your blog posts will be displayed here -->
+      </div>
+
+
+@endsection
+
+
+@section('scripts')
+
+<script>
+    $(document).ready(function() {
+
+        $("#search-input").on('input', function() {
+        // e.preventDefault();
+        let query = $("#search-input").val();
+        console.log(query);
+
+        $.ajax({
+            url: "{{ route('home') }}",
+            type: 'GET',
+            data: {
+            'search': query
+            },
+            success: function(result) {
+                console.log(result.title);
+            $("#search-results").html(result);
+            }
+        });
+        });
+    });
+</script>
+
 @endsection
 
 </x-home-master>

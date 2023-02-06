@@ -31,14 +31,19 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
             <li>
-                <form action="{{route('home')}}" method="get">
+                <form id="search-form">
+                    <input type="text" id="search-input" name="search" placeholder="search">
+                    {{-- <button type="submit" id="search-button">Search</button> --}}
+                </form>
+
+                {{-- <form action="{{route('home')}}" method="get">
                     <div class="input-group">
                         <input type="search" class="form-control" name="search" placeholder="Search for title or name" value="">
                         <span class="input-group-btn">
                         <button class="btn btn-secondary" type="submit">Search</button>
                         </span>
                     </div>
-                </form>
+                </form> --}}
               </li>
 
 
@@ -130,6 +135,8 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
   <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+  @yield('scripts')
 
 </body>
 

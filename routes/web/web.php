@@ -24,6 +24,7 @@ use App\Http\Controllers\LogoutController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'search'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AdminsController::class, 'index'])->name('admin.index');

@@ -23,15 +23,18 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(Request $request)
+
     {
-        $search = $request['search'] ?? "";
 
-        if($search !== ""){
+        $post = Post::all();
+        // $search = $request['search'] ?? "";
 
-            $post = Post::where("title", "=", $search)->get();
-        }else{
-            $post = Post::all();
-        }
+        // if($search !== ""){
+
+        //     $post = Post::where("title", "=", $search)->get();
+        // }else{
+        //     $post = Post::all();
+        // }
 
         // $data = compact('post');
 
@@ -39,4 +42,29 @@ class HomeController extends Controller
 
         return view ('home', ['posts'=>$post]);
     }
+
+
+
+    public function search(Request $request)
+{
+
+
+    $search = $request->input('search');
+
+
+    if($search !== ""){
+
+        $posts = Post::where('title', 'like', '%'.$search.'%')->get();
+    }else{
+        $posts = Post::all();
+        }
+    // $posts = Post::where('title', 'like', '%'.$search.'%')->get();
+
+
+    return view('home', compact('posts'));
 }
+
+}
+
+
+
