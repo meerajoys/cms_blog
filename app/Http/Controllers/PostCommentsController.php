@@ -16,16 +16,11 @@ class PostCommentsController extends Controller
      */
     public function index()
     {
-        //
         // if(auth()->user()->name !== 'admin'){
 
         //     $comments= auth()->user()->comments();
         // }
-
-
             $comments = Comment::all();
-
-
         return view('admin.comments.index', ['comments'=>$comments]);
     }
 
@@ -60,18 +55,10 @@ class PostCommentsController extends Controller
             // 'photo'=>$user->photo->file,
             'body'=>$request->body
         ];
-
         Comment::create($data);
-
         $request->session()->flash('comment-message','your message has been submitted');
-
         return redirect()->back();
-
-
-
-
         // return view('admin.comments.index' , ['comments'=>Comment::class]);
-
         // return $request->all();
         // dd($request->all());
 
@@ -85,18 +72,13 @@ class PostCommentsController extends Controller
      */
     public function show($id)
     {
-        //
-
         // dd($id);
         // dd($post_id);
         $post = Post::findOrFail($id);
         // dd($post);
         // dd($post->all());
-
         $comments = $post->comments;
-
         return view('admin.comments.show', ['comments'=>$comments]);
-
 
     }
 
@@ -121,15 +103,10 @@ class PostCommentsController extends Controller
     public function update(Request $request, $id)
     {
         //
-
         Comment::findOrFail($id)->update($request->all());
-
         return redirect()->back();
 
         // return redirect('admin/comments');
-
-
-
         // dd($request->all());
     }
 
@@ -145,16 +122,12 @@ class PostCommentsController extends Controller
         // dd($id);
         $comment = Comment::whereid($id)->first();           // find all data from comment table where id =$id
         // $comment = Comment::where('id',$id)->first();
-
         // dd($comment);
         $comment->delete();
         // $comment = Comment::find($id);
         // Comment::find($id)->delete();
-
          // $id->delete();
          session()->flash('comment-deleted-message', 'Comment was deleted');
-
-
         return redirect()->back();
     }
 

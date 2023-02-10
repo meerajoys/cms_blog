@@ -87,6 +87,12 @@ class PostController extends Controller
         // dd(request()->all());
     }
 
+    /**
+     * edit
+     *
+     * @param  mixed $post
+     * @return void
+     */
     public function edit(Post $post){
 
         // if(auth()->user()->can('view', $post)){
@@ -123,6 +129,13 @@ class PostController extends Controller
         return back();
     }
 
+    /**
+     * update
+     *
+     * @param  mixed $post
+     * @param  mixed $request
+     * @return void
+     */
     public function update(Post $post, Request $request){
 
 
@@ -171,6 +184,13 @@ class PostController extends Controller
     }
 
 
+    /**
+     * post
+     *
+     * @param  mixed $id
+     * @param  mixed $post_id
+     * @return void
+     */
     public function post($id, Comment $post_id){
 
         $post = Post::findOrFail($id);
